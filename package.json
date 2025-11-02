@@ -1,0 +1,23 @@
+{
+  "name": "portfolio-matheus-bull",
+  "version": "1.0.0",
+  "description": "Portfólio pessoal de Matheus Bull - Desenvolvedor em Formação",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build && next export"
+  },
+  "dependencies": {
+    "next": "13.5.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@emailjs/browser": "^4.3.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
+  }
+}
