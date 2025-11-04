@@ -24,12 +24,16 @@ export default function Hero() {
       </div>
       
       <div className="container mx-auto px-6 text-center relative z-10">
-        {/* Avatar/Logo */}
-        <div className="w-40 h-40 mx-auto mb-8 bg-white/10 rounded-full flex items-center justify-center border-4 border-white/20 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
-          <div className="text-4xl font-bold bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
-            MB
-          </div>
+    {/* Avatar/Logo */}
+    <div className="w-40 h-40 mx-auto mb-8 bg-white/10 rounded-full flex items-center justify-center border-4 border-white/20 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
+        <div className="text-4xl font-bold bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
+            <img 
+                src="/images/logo.png" 
+                alt="Matheus Bull Logo" 
+                className="w-32 h-32 object-cover rounded-full"
+            />
         </div>
+    </div>
         
         {/* Name and Title */}
         <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
