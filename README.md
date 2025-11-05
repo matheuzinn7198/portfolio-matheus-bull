@@ -31,13 +31,13 @@ O projeto é uma aplicação **SPA (Single Page Application)** de alta performan
 
 ```mermaid
 graph TB
-A[Frontend] --> B[Next.js 13.5 (React)]
-A --> C[Tailwind CSS 3.3]
-A --> D[HTML5/CSS3]
+A[Frontend] --> B["Next.js 13.5 (React)"]
+A --> C["Tailwind CSS 3.3"]
+A --> D["HTML5/CSS3"]
 F[Serviço de Email] --> G[EmailJS]
 I[Ferramentas] --> J[VS Code]
 I --> K[Git/GitHub]
-I --> L[Vercel (Deploy)]
+I --> L["Vercel (Deploy)"]
 ```
 
 ---
@@ -59,6 +59,7 @@ git clone [https://github.com/matheuzinn7198/portfolio-matheus-bull.git](https:/
 2. Acesse a pasta e instale as dependências:
 
 cd portfolio-matheus-bull
+
 npm install
 
 3. Execute em modo desenvolvimento:
