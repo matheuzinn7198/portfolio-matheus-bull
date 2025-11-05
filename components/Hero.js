@@ -31,7 +31,7 @@ export default function Hero() {
                 src="/images/logo.png" 
                 alt="Matheus Bull Logo" 
                 className="w-32 h-32 object-cover rounded-full"
-            />
+            />  
         </div>
     </div>
         
