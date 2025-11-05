@@ -31,18 +31,18 @@ O projeto é uma aplicação **SPA (Single Page Application)** de alta performan
 
 ```mermaid
 graph TB
-    A[🖥 Frontend] --> B[Next.js 13.5 (React)]
-    A --> C[Tailwind CSS 3.3]
-      
-    F[📧 Serviço de Email] --> G[EmailJS]
-      
-    I[🔧 Ferramentas] --> J[VS Code]
-    I --> K[Git/GitHub]
-    I --> L[Vercel (Deploy)]
-    
-    style A fill:#3B82F6,color:white
-    style F fill:#10B981,color:white
-    style I fill:#F59E0B,color:white
+    A[🖥 Frontend] --> B[Next.js 13.5 (React)]
+    A --> C[Tailwind CSS 3.3]
+    
+    F[📧 Serviço de Email] --> G[EmailJS]
+    
+    I[🔧 Ferramentas] --> J[VS Code]
+    I --> K[Git/GitHub]
+    I --> L[Vercel (Deploy)]
+    
+    style A fill:#3B82F6,color:white
+    style F fill:#10B981,color:white
+    style I fill:#F59E0B,color:white
 ```
 
 ---
