@@ -33,11 +33,11 @@ export default function Contact() {
 
       // SUBSTITUA COM SUAS CREDENCIAIS DO EMAILJS
       await emailjs.send(
-        'service_9twbxuc',      // Seu SERVICE ID
-        'template_rzrws64',    // Seu TEMPLATE ID
-        templateParams,
-        'OvpHg6sx_sKeDhtbJ'               // Sua PUBLIC KEY
-      )
+    'service_seu_id',      // Service ID
+    'template_seu_id',     // Template ID  
+    templateParams,
+    'sua_public_key'       // Public Key
+    )
 
       setShowSuccess(true)
       setFormData({ name: '', email: '', message: '' })
