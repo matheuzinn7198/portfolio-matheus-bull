@@ -20,7 +20,7 @@ export default function Projects() {
       title: "Mobile App Flutter",
       description: "Aplicativos mobile desenvolvidos em Flutter/Dart para aprendizado e prática de desenvolvimento mobile multiplataforma.",
       tech: ["Flutter", "Dart", "Mobile", "Cross-platform"],
-      githubUrl: "https://github.com/matheuzinn7198/Mobile",
+      githubUrl: "https://github.com/matheuzinn7198/CursoMobile.git",
       image: "📱",
       featured: true
     }
