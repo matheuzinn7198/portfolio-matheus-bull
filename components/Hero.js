@@ -48,7 +48,7 @@ export default function Hero() {
         
         {/* Name and Title */}
         <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-          Matheus Bull
+          Matheus Büll
         </h1>
         
         <div className="h-12 mb-8">
@@ -71,7 +71,7 @@ export default function Hero() {
             <span>🚀 Ver Projetos</span>
           </a>
           <a 
-            href="#contact" 
+            href="#contato" 
             className="group border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm flex items-center space-x-2"
           >
             <span>💬 Vamos Conversar</span>

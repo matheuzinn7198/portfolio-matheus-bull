@@ -45,7 +45,7 @@ export default function Header() {
             <a href="#about" className="text-gray-700 hover:text-blue-600 transition font-medium">Sobre</a>
             <a href="#skills" className="text-gray-700 hover:text-blue-600 transition font-medium">Habilidades</a>
             <a href="#projects" className="text-gray-700 hover:text-blue-600 transition font-medium">Projetos</a>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600 transition font-medium">Contato</a>
+            <a href="#contato" className="text-gray-700 hover:text-blue-600 transition font-medium">Contato</a>
           </div>
         </div>
 
@@ -57,7 +57,7 @@ export default function Header() {
             <a href="#about" className="block text-gray-700 hover:text-blue-600 transition font-medium" onClick={() => setIsMenuOpen(false)}>Sobre</a>
             <a href="#skills" className="block text-gray-700 hover:text-blue-600 transition font-medium" onClick={() => setIsMenuOpen(false)}>Habilidades</a>
             <a href="#projects" className="block text-gray-700 hover:text-blue-600 transition font-medium" onClick={() => setIsMenuOpen(false)}>Projetos</a>
-            <a href="#contact" className="block text-gray-700 hover:text-blue-600 transition font-medium" onClick={() => setIsMenuOpen(false)}>Contato</a>
+            <a href="#contato" className="block text-gray-700 hover:text-blue-600 transition font-medium" onClick={() => setIsMenuOpen(false)}>Contato</a>
           </div>
         </div>
       </nav>

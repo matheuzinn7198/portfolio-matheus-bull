@@ -56,7 +56,7 @@ export default function Goals() {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a 
-            href="#contact"
+            href="#contato"
             className="bg-white text-blue-700 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2"
           >
             <span>💬 Vamos Conversar</span>

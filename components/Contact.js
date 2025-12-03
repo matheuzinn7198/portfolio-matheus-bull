@@ -1,274 +1,75 @@
-import { useState } from 'react'
-import emailjs from '@emailjs/browser'
+import React from 'react';
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    try {
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        to_name: 'Matheus Bull',
-        reply_to: formData.email,
-        date: new Date().toLocaleDateString('pt-BR')
-      }
-
-      // SUBSTITUA COM SUAS CREDENCIAIS DO EMAILJS
-      await emailjs.send(
-    'service_seu_id',      // Service ID
-    'template_seu_id',     // Template ID  
-    templateParams,
-    'sua_public_key'       // Public Key
-    )
-
-      setShowSuccess(true)
-      setFormData({ name: '', email: '', message: '' })
-      
-      setTimeout(() => {
-        setShowSuccess(false)
-      }, 5000)
-
-    } catch (error) {
-      console.error('Erro ao enviar email:', error)
-      alert('Erro ao enviar mensagem. Tente novamente ou me envie um email diretamente para bullproducoes4@gmail.com')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
+const Contact = () => {
   return (
-    <section id="contact" className="py-20 bg-white relative">
-      
-      {/* Success Message */}
-      {showSuccess && (
-        <div className="fixed top-20 right-6 z-50 animate-fade-in">
-          <div className="bg-green-500 text-white px-6 py-4 rounded-lg shadow-xl flex items-center space-x-3 max-w-md border border-green-400">
-            <div className="flex-shrink-0">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <div>
-              <p className="font-semibold">Mensagem enviada com sucesso! 🎉</p>
-              <p className="text-sm opacity-90">Retornarei em até 24 horas.</p>
-            </div>
-            <button 
-              onClick={() => setShowSuccess(false)}
-              className="text-white hover:text-green-200 transition ml-4"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
-
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-6 text-gray-800">
-            Vamos <span className="text-blue-600">Conversar</span>
+    <section id="contato" className="w-full py-16 px-4 bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-[1240px] mx-auto">
+        
+        {/* Cabeçalho da Seção */}
+        <div className="text-center mb-10">
+          <p className="text-xl tracking-widest uppercase text-[#5651e5]">
+            Contato
+          </p>
+          <h2 className="py-4 text-3xl font-bold text-gray-800 dark:text-white">
+            Vamos conversar?
           </h2>
-          <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Pronto para novos desafios e oportunidades. Entre em contato!
+          <p className="py-2 text-gray-600 dark:text-gray-400">
+            Atualmente estou disponível para novos projetos e oportunidades.
           </p>
         </div>
-        
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-xl border border-gray-100">
-            <h3 className="text-2xl font-bold mb-6 text-gray-800">Envie uma mensagem</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Nome Completo *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  placeholder="Seu nome completo"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  E-mail *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  disabled={isSubmitting}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                  placeholder="seu@email.com"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Mensagem *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  disabled={isSubmitting}
-                  rows="6"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition disabled:opacity-50 disabled:cursor-not-allowed resize-none"
-                  placeholder="Conte-me sobre sua proposta, projeto ou oportunidade de colaboração..."
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
-              >
-                {isSubmitting ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span>Enviando...</span>
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                    <span>Enviar Mensagem</span>
-                  </>
-                )}
-              </button>
 
-              <p className="text-xs text-gray-500 text-center">
-                * Campos obrigatórios. Responderei em até 24 horas.
-              </p>
-            </form>
-          </div>
+        {/* Container dos Cards de Contato */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-800">Informações de Contato</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Estou sempre aberto a novas oportunidades, projetos interessantes e conversas sobre tecnologia. 
-                Seja para um estágio, projeto freelance ou apenas trocar ideias, ficarei feliz em responder!
-              </p>
+          {/* Card LinkedIn */}
+          <a 
+            href="https://linkedin.com/in/matheus-bull-85277137a" 
+            target="_blank" 
+            rel="noreferrer"
+            className="flex flex-col items-center p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300 bg-white dark:bg-gray-800 cursor-pointer"
+          >
+            <div className="text-[#0077b5] mb-4">
+              {/* Ícone simples do LinkedIn (SVG) */}
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             </div>
-            
-            <div className="space-y-4">
-              <a 
-                href="mailto:bullproducoes4@gmail.com"
-                className="flex items-center text-gray-700 hover:text-blue-600 transition group p-4 rounded-xl hover:bg-blue-50 border border-transparent hover:border-blue-100"
-              >
-                <div className="bg-blue-100 p-3 rounded-lg group-hover:bg-blue-200 transition mr-4">
-                  <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold">bullproducoes4@gmail.com</div>
-                  <div className="text-sm text-gray-500">Respondo rapidamente!</div>
-                </div>
-              </a>
-              
-              <a 
-                href="https://www.linkedin.com/in/matheus-bull-85277137a"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center text-gray-700 hover:text-blue-600 transition group p-4 rounded-xl hover:bg-blue-50 border border-transparent hover:border-blue-100"
-              >
-                <div className="bg-blue-100 p-3 rounded-lg group-hover:bg-blue-200 transition mr-4">
-                  <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold">LinkedIn</div>
-                  <div className="text-sm text-gray-500">/matheus-bull-85277137a</div>
-                </div>
-              </a>
-              
-              <a 
-                href="https://github.com/matheuzinn7198"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center text-gray-700 hover:text-blue-600 transition group p-4 rounded-xl hover:bg-blue-50 border border-transparent hover:border-blue-100"
-              >
-                <div className="bg-blue-100 p-3 rounded-lg group-hover:bg-blue-200 transition mr-4">
-                  <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold">GitHub</div>
-                  <div className="text-sm text-gray-500">@matheuzinn7198</div>
-                </div>
-              </a>
+            <h3 className="text-lg font-bold text-gray-700 dark:text-gray-200">LinkedIn</h3>
+            <p className="text-sm text-gray-500 mt-2">Conecte-se profissionalmente</p>
+          </a>
+
+          {/* Card Email - Link Direto para o Gmail */}
+          <a 
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=bullproducoes4@gmail.com&su=Contato%20via%20Portfólio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300 bg-white dark:bg-gray-800 cursor-pointer"
+          >
+            <div className="text-[#D14836] mb-4">
+               {/* Ícone simples de Email (SVG) */}
+               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
             </div>
-            
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
-              <h4 className="font-semibold text-gray-800 mb-3 flex items-center">
-                <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Disponível para
-              </h4>
-              <ul className="text-gray-600 space-y-2">
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                  Estágio em Desenvolvimento
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                  Projetos Freelance
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                  Oportunidades Júnior
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                  Colaborações em Open Source
-                </li>
-              </ul>
+            <h3 className="text-lg font-bold text-gray-700 dark:text-gray-200">Email</h3>
+            <p className="text-sm text-gray-500 mt-2">bullproducoes4@gmail.com</p>
+          </a>
+
+          {/* Card GitHub */}
+          <a 
+            href="https://github.com/matheuzinn7198" 
+            target="_blank" 
+            rel="noreferrer"
+            className="flex flex-col items-center p-6 shadow-xl rounded-xl hover:scale-105 ease-in duration-300 bg-white dark:bg-gray-800 cursor-pointer"
+          >
+            <div className="text-gray-800 dark:text-white mb-4">
+              {/* Ícone simples do GitHub (SVG) */}
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             </div>
-          </div>
+            <h3 className="text-lg font-bold text-gray-700 dark:text-gray-200">GitHub</h3>
+            <p className="text-sm text-gray-500 mt-2">Veja meu código</p>
+          </a>
+
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
+
+export default Contact;
