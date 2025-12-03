@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 export default function Hero() {
   const [displayText, setDisplayText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [imageError, setImageError] = useState(false)
   const fullText = "Desenvolvedor em Formação"
 
   useEffect(() => {
@@ -24,15 +25,26 @@ export default function Hero() {
       </div>
       
       <div className="container mx-auto px-6 text-center relative z-10">
-    {/* Avatar/Logo */}
-    <div className="w-40 h-40 mx-auto mb-8 bg-white/10 rounded-full flex items-center justify-center border-4 border-white/20 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
-        <div className="text-4xl font-bold bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
-            <img  
-                alt="MB" 
-                className="w-00 h-00 object-cover rounded-full"
-            />  
+        {/* Avatar/Logo */}
+        <div className="w-40 h-40 mx-auto mb-8 bg-white/10 rounded-full flex items-center justify-center border-4 border-white/20 backdrop-blur-sm hover:scale-105 transition-transform duration-300 overflow-hidden">
+          {/* OPÇÃO A: Imagem local - TESTE COM ESTA PRIMEIRO */}
+          <img  
+            src="/images/fotoperfil.jpg" // Nome mais simples para testar
+            alt="" 
+            className="w-full h-full object-cover"
+            onError={() => {
+              console.log("Erro ao carregar imagem!");
+              setImageError(true)
+            }}
+          />
+          
+          {/* Fallback se a imagem não carregar */}
+          {imageError && (
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-300">
+              <div className="text-4xl font-bold text-white">MB</div>
+            </div>
+          )}
         </div>
-    </div>
         
         {/* Name and Title */}
         <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
@@ -71,14 +83,6 @@ export default function Hero() {
             className="group border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm flex items-center space-x-2"
           >
             <span>💼 LinkedIn</span>
-          </a>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#about" className="text-white/60 hover:text-white transition">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            </svg>
           </a>
         </div>
       </div>
